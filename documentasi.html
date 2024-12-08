@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Had AI Documentation</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #1a1a1a;
+            color: #e0e0e0;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: #2a2a2a;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+        }
+        h1, h2 {
+            color: #ffffff;
+            text-align: center;
+        }
+        h1 {
+            margin-bottom: 2rem;
+        }
+        img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            margin: 1rem auto;
+            display: block;
+        }
+        .back-button {
+            background-color: #4a4a4a;
+            color: #ffffff;
+            border: none;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            margin-bottom: 1rem;
+        }
+        .back-button:hover {
+            background-color: #606060;
+        }
+        .section {
+            margin-bottom: 2rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .table-container {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+        }
+        table {
+            width: 100%;
+            max-width: 600px;
+            border-collapse: collapse;
+            margin-bottom: 1rem;
+        }
+        th, td {
+            border: 1px solid #4a4a4a;
+            padding: 0.5rem;
+            text-align: left;
+        }
+        th {
+            background-color: #333;
+            color: #fff;
+        }
+        .check {
+            color: #4CAF50;
+            font-weight: bold;
+            text-align: center;
+        }
+        .important {
+            font-weight: bold;
+            color: #ffd700;
+        }
+        ul {
+            width: 100%;
+            max-width: 600px;
+            padding-left: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <button class="back-button" onclick="goBack()">
+            <i class="fas fa-arrow-left"></i>
+        </button>
+        <h1><i class="fas fa-robot"></i> Had AI Documentation</h1>
+        
+        <div class="section">
+            <h2>Apa itu Had AI?</h2>
+            <p><b>Had AI</b> adalah sebuah <span class="important">platform kecerdasan buatan (AI)</span> yang dirancang untuk memberikan berbagai layanan interaktif dan bermanfaat bagi pengguna.</p>
+            <img src="/api/placeholder/800/400" alt="AI Concept Illustration">
+        </div>
+
+        <div class="section">
+            <h2>Fitur-fitur Had AI</h2>
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Fitur</th>
+                            <th>Deskripsi</th>
+                            <th>Tersedia</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Tanya Jawab</strong></td>
+                            <td>Menjawab berbagai pertanyaan dengan informasi akurat dan relevan</td>
+                            <td class="check">✓</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Generate Gambar</strong></td>
+                            <td>Menghasilkan gambar otomatis berdasarkan deskripsi</td>
+                            <td class="check">✓</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Review Code</strong></td>
+                            <td>Menganalisis dan memberikan masukan terhadap kode program</td>
+                            <td class="check">✓</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Coding</strong></td>
+                            <td>Membantu menulis kode berdasarkan deskripsi yang diberikan</td>
+                            <td class="check">✓</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Penggunaan Fitur</h2>
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Fitur</th>
+                            <th>Cara Penggunaan</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Tanya Jawab</strong></td>
+                            <td>Berikan pertanyaan berupa teks kepada Had AI</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Generate Gambar</strong></td>
+                            <td>Berikan deskripsi gambar yang ingin dibuat, contoh: <span class="important">"Buatkan Gambar Dinosaurus Sedang Tidur"</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Review Code</strong></td>
+                            <td>Berikan kode ke AI dan minta untuk di-review dengan mengatakan <span class="important">"Review code"</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Coding</strong></td>
+                            <td>Berikan deskripsi kode yang ingin dibuat kepada Had AI</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Hal Penting</h2>
+            <ul>
+                <li>Had AI masih dalam <span class="important">tahap pengembangan</span>, jika terjadi error harap dimaklumi.</li>
+                <li>Had AI memberikan <span class="important">Trial 15x percobaan per jam</span>.</li>
+                <li>Jika terjadi error, silakan lapor melalui <span class="important">Hubungi Kami</span>.</li>
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        function goBack() {
+            console.log('Going back...');
+            alert('Going back to previous page');
+        }
+    </script>
+</body>
+</html>
