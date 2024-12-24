@@ -149,6 +149,21 @@ function formatText(text) {
     // Escaping HTML tags to prevent XSS
     text = text.replace(/</g, '&lt;').replace(/>/g, '&gt;');
 
+        // LaTeX
+text = text.replace(/\$\$(.*?)\$\$/g, '<span class="latex-math">\$1\</span>'); // Inline LaTeX
+text = text.replace(/\$(.*?)\$/g, '<span class="latex-math">\$1\</span>');     // Inline LaTeX
+text = text.replace(/\\(.*?)\\/g, '<span class="latex-math">\$1\</span>');  // Block LaTeX
+text = text.replace(/\\(.*?)\\/g, '<span class="latex-math">\$1\</span>');  // Block LaTeX
+
+// Render LaTeX
+if (typeof MathJax !== 'undefined') {
+    MathJax.typesetPromise()
+        .then(() => {
+            console.log('MathJax rendering complete');
+        })
+        .catch((err) => console.error('MathJax rendering error:', err));
+}
+    
     // Headings
     text = text.replace(/^###### (.*$)/gm, '<h6>$1</h6>');
     text = text.replace(/^##### (.*$)/gm, '<h5>$1</h5>');
