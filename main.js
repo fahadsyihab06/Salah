@@ -304,7 +304,7 @@ async function getBotResponse(message) {
 
 async function callRyzenDesuAPI(query) {
     try {
-        const apiUrl = `https://api.ryzendesu.vip/api/ai/chatgpt?text=${encodeURIComponent(query)}&prompt=Kamu%20adalah%20AI%20yang%20bernama%20HAD%20AI`;
+        const apiUrl = `https://api.ryzendesu.vip/api/ai/chatgpt?text=${encodeURIComponent(query)}&prompt=jadilah%20AI%20bernama%20had-ai%20pakailah%20bahasa%20gaul.`;
         const response = await fetch(apiUrl, {
             method: 'GET',
             headers: { 'accept': 'application/json' }
