@@ -322,7 +322,10 @@ async function callRyzenDesuAPI(query) {
         const apiUrl = `https://api.ryzendesu.vip/api/ai/chatgpt?text=${encodeURIComponent(query)}&prompt=jadilah%20AI%20bernama%20had-ai%20pakailah%20bahasa%20gaul.`;
         const response = await fetch(apiUrl, {
             method: 'GET',
-            headers: { 'accept': 'application/json' }
+            headers: { 
+                'accept': 'application/json',
+                'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'
+            }
         });
 
         if (!response.ok) {
