@@ -321,7 +321,8 @@ async function callRyzenDesuAPI(query) {
     try {
        // const apiUrl = `https://api.ryzendesu.vip/api/ai/chatgpt?text=${encodeURIComponent(query)}&prompt=jadilah%20AI%20bernama%20had-ai%20pakailah%20bahasa%20gaul.`;
         //const apiUrl = `https://api.ryzendesu.vip/api/ai/chatgpt?text=${encodeURIComponent(query)}&prompt=Jadilah%20ai%20bernama%20Had%20AI%20yaitu%20nama%20dari%20Fahad%20sih%20developer%20kamu%20yang%20telah%20membuat%20kamu%2C%20gunakan%20bahasa%20gaul%20dalam%20percakapan%20`;
-        const apiUrl = `https://api.ryzendesu.vip/api/ai/deepseek?text=${encodeURIComponent(query)}&prompt=ai`;
+        //const apiUrl = `https://api.ryzendesu.vip/api/ai/deepseek?text=${encodeURIComponent(query)}&prompt=ai`;
+        const apiUrl = `https://api.siputzx.my.id/api/ai/llama33?prompt=Be%20a%20helpful%20assistant&text=${encodeURIComponent(query)}`;
         //const apiUrl = `https://api.ryzendesu.vip/api/ai/claude?text=${encodeURIComponent(query)}`;
         const response = await fetch(apiUrl, {
             method: 'GET',
