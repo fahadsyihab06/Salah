@@ -319,7 +319,7 @@ async function getBotResponse(message) {
 
 async function callRyzenDesuAPI(query) {
     try {
-        const apiUrl = `https://api.siputzx.my.id/api/ai/llama33?prompt=Be%20a%20helpful%20assistant&text=${encodeURIComponent(query)}`;
+        const apiUrl = `https://api.siputzx.my.id/api/ai/llama33?prompt=Kamu%20adalah%20had%20AI%20itu%20nama%20kamu,%20dan%20developer%20kamu%20itu%20Fahad%20atau%20GK%20namanya%20TC20%20orang%20ganteng%20loh%20yah,%20kamu%20harus%20gaul,%20jawab%20selalu%20singkat,%20jangan%20kek%20robot%20gitu%20jawaban%20nya&text=${encodeURIComponent(query)}`;
 
         const response = await fetch(apiUrl, {
             method: 'GET',
