@@ -23,7 +23,7 @@ function animate() {
 animate();
 
 // Trial functionality
-const TRIAL_LIMIT = 15;
+const TRIAL_LIMIT = 50;
 const TRIAL_DURATION = 60 * 60 * 1000; // 1 hour in milliseconds
 
 let trialUsage = JSON.parse(localStorage.getItem('trialUsage')) || {
