@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Gun.js Chat</title>
+<script src="https://cdn.jsdelivr.net/npm/gun/gun.js"></script>
+
+  <style>
+    body { font-family: sans-serif; background: #111; color: #fff; padding: 20px; }
+    #chat { max-height: 300px; overflow-y: auto; border: 1px solid #444; padding: 10px; margin-bottom: 10px; }
+    input, button { padding: 10px; font-size: 16px; }
+  </style>
+</head>
+<body>
+  <h2>Gun.js Real-Time Chat</h2>
+  <div id="chat"></div>
+  <input type="text" id="alias" placeholder="Your Name">
+  <input type="text" id="msg" placeholder="Your Message">
+  <button onclick="send()">Send</button>
+
+  <script>
+    const gun = Gun(['https://gun-manhattan.herokuapp.com/gun']); // relay aktif
+  const chat = gun.get('gun-chat');
+
+    function send() {
+      const alias = document.getElementById('alias').value;
+      const msg = document.getElementById('msg').value;
+      if (!alias || !msg) return;
+      chat.set({ alias, msg, time: Date.now() });
+      document.getElementById('msg').value = '';
+    }
+
+    chat.map().on(data => {
+      if (data && data.msg && data.alias) {
+        const el = document.createElement('div');
+        el.textContent = `[${data.alias}] ${data.msg}`;
+        document.getElementById('chat').appendChild(el);
+      }
+    });
+  </script>
+</body>
+</html>
