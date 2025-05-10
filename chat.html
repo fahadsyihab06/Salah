@@ -357,6 +357,11 @@
       typingAvatars.appendChild(avatarDiv);
     });
   }
+
+  // Add interval to refresh chat every 1 second
+  setInterval(() => {
+    chatRef.map().once(() => {}); // Fetch the latest data without disturbing the user
+  }, 1000);
 </script>
 
 </body>
