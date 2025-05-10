@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>gabut</title>
+  <title>Gun.js Chat Elegan</title>
   <!-- Gun.js CDN -->
   <script src="https://cdn.jsdelivr.net/npm/gun/gun.js"></script>
   <!-- Font Awesome CDN -->
@@ -46,6 +46,7 @@
       display: flex;
       gap: 10px;
       align-items: flex-start;
+      position: relative;
     }
     .avatar-badge {
       background: #00e676;
@@ -86,7 +87,7 @@
       display: flex;
       justify-content: space-between;
       gap: 10px;
-      flex-wrap: wrap;
+      align-items: center;
     }
     .icon-button {
       background: #00c853;
@@ -99,7 +100,6 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      flex-shrink: 0;
     }
     .icon-button:hover {
       background: #00e676;
@@ -137,6 +137,26 @@
       margin-top: 5px;
     }
 
+    .message-buttons {
+      position: absolute;
+      top: 8px;
+      right: 10px;
+      display: flex;
+      gap: 5px;
+    }
+
+    .message-buttons button {
+      background: none;
+      border: none;
+      color: white;
+      cursor: pointer;
+      font-size: 14px;
+    }
+
+    .message-buttons button:hover {
+      color: #00e676;
+    }
+
     @media (max-width: 480px) {
       h2 {
         font-size: 1.2rem;
@@ -156,8 +176,8 @@
 <body>
 
 <div class="container">
-  <h2>Gabut Chat</h2>
-  <input type="text" id="nameInput" placeholder="Nama lu brek...">
+  <h2>gabut</h2>
+  <input type="text" id="nameInput" placeholder="Nama kamu...">
   <div id="typingAvatars"></div>
   <div class="chatBox" id="chatBox"></div>
 
@@ -241,11 +261,11 @@
       }
       const reader = new FileReader();
       reader.onload = e => {
-        chatRef.set({ name, msg, img: e.target.result, time: now });
+        chatRef.set({ name, msg, img: e.target.result, time: now, replyTo: null });
       };
       reader.readAsDataURL(file);
     } else {
-      chatRef.set({ name, msg, img: null, time: now });
+      chatRef.set({ name, msg, img: null, time: now, replyTo: null });
     }
 
     chatMsg.value = '';
@@ -273,6 +293,7 @@
         <div class="msg-content">
           <div class="avatar">@${escapeHtml(d.name)} <small style="color:#aaa;font-size:12px;">${timeStr}</small></div>
           ${escapeHtml(d.msg || '')}
+          ${d.replyTo ? `<blockquote style="color: #aaa;">Balasan: ${escapeHtml(d.replyTo)}</blockquote>` : ''}
         </div>
       `;
       if (d.img) {
@@ -281,12 +302,34 @@
         img.className = 'chat-image';
         div.querySelector('.msg-content').appendChild(img);
       }
+
+      // Add buttons for reply and delete
+      const messageButtons = document.createElement('div');
+      messageButtons.className = 'message-buttons';
+      messageButtons.innerHTML = `
+        <button onclick="replyMessage('${id}')"><i class="fas fa-reply"></i></button>
+        <button onclick="deleteMessage('${id}')"><i class="fas fa-trash-alt"></i></button>
+      `;
+      div.appendChild(messageButtons);
+
       box.appendChild(div);
     });
     box.scrollTop = box.scrollHeight;
 
     typingRef.get(data.name).put(0);
   });
+
+  function deleteMessage(id) {
+    chatRef.get(id).put(null);  // Remove the message from Gun DB
+  }
+
+  function replyMessage(id) {
+    const message = messages.find(m => m.id === id);
+    if (message) {
+      chatMsg.value = `Balas pesan: ${message.msg}`;
+      chatRef.get(id).put({ ...message, replyTo: message.msg });
+    }
+  }
 
   const typingAvatars = document.getElementById('typingAvatars');
   const typingUsers = {};
