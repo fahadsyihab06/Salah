@@ -60,11 +60,10 @@
       color: #00e676;
       margin-bottom: 3px;
     }
-    .typing-status {
-      font-style: italic;
-      color: #aaa;
+    #typingAvatars {
+      display: flex;
+      gap: 8px;
       margin-bottom: 10px;
-      min-height: 18px;
     }
     input[type="text"], input[type="file"] {
       background: #2c2c2c;
@@ -132,7 +131,6 @@
       margin-top: 5px;
     }
 
-    /* Responsive typography */
     @media (max-width: 480px) {
       h2 {
         font-size: 1.2rem;
@@ -150,14 +148,13 @@
   </style>
 </head>
 <body>
-  <!-- isi HTML dan script tetap, sama seperti sebelumnya -->
 
 <div class="container">
   <h2>Gun.js Real-Time Chat</h2>
   <input type="text" id="nameInput" placeholder="Nama kamu...">
-  <div class="typing-status" id="typingStatus"></div>
+  <div id="typingAvatars"></div>
   <div class="chatBox" id="chatBox"></div>
-  
+
   <div class="input-group">
     <input type="text" id="chatMsg" placeholder="Tulis pesan...">
     <button class="icon-button" onclick="sendChat()">
@@ -195,7 +192,6 @@
   });
 
   const chatMsg = document.getElementById('chatMsg');
-  const typingStatus = document.getElementById('typingStatus');
 
   chatMsg.addEventListener('keydown', e => {
     if (e.key === 'Enter') sendChat();
@@ -282,16 +278,37 @@
       box.appendChild(div);
     });
     box.scrollTop = box.scrollHeight;
+
+    // Matikan status mengetik dari pengguna yang baru kirim pesan
+    typingRef.get(data.name).put(0);
   });
+
+  const typingAvatars = document.getElementById('typingAvatars');
+  const typingUsers = {};
 
   typingRef.map().on((isTyping, who) => {
     const me = nameInput.value.trim();
-    if (isTyping && who !== me) {
-      typingStatus.innerText = `${who} sedang mengetik...`;
-    } else if (typingStatus.innerText.startsWith(who)) {
-      typingStatus.innerText = '';
+    if (!who || who === me) return;
+
+    if (isTyping) {
+      typingUsers[who] = true;
+    } else {
+      delete typingUsers[who];
     }
+
+    renderTypingAvatars();
   });
+
+  function renderTypingAvatars() {
+    typingAvatars.innerHTML = '';
+    Object.keys(typingUsers).forEach(user => {
+      const avatarDiv = document.createElement('div');
+      avatarDiv.className = 'avatar-badge';
+      avatarDiv.textContent = user[0].toUpperCase();
+      avatarDiv.title = `${user} sedang mengetik...`;
+      typingAvatars.appendChild(avatarDiv);
+    });
+  }
 </script>
 
 </body>
