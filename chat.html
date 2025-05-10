@@ -3,25 +3,30 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Gun.js Chat Elegan</title>
+  <title>gabut</title>
+  <!-- Gun.js CDN -->
   <script src="https://cdn.jsdelivr.net/npm/gun/gun.js"></script>
-  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+  <!-- Font Awesome CDN -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
   <style>
     * {
       box-sizing: border-box;
+      margin: 0;
+      padding: 0;
     }
     body {
-      margin: 0;
       font-family: 'Segoe UI', sans-serif;
       background: #121212;
       color: #eee;
     }
     .container {
-      padding: 16px;
+      max-width: 600px;
+      margin: 0 auto;
+      padding: 20px;
       padding-bottom: 120px;
     }
     h2 {
-      font-size: 1.4rem;
+      font-size: 1.5rem;
       margin-bottom: 10px;
     }
     .chatBox {
@@ -30,7 +35,8 @@
       background: #1e1e1e;
       padding: 15px;
       border-radius: 12px;
-      margin-bottom: 10px;
+      margin-bottom: 20px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
     }
     .message {
       background: #2b2b2b;
@@ -39,6 +45,7 @@
       border-radius: 10px;
       display: flex;
       gap: 10px;
+      align-items: flex-start;
     }
     .avatar-badge {
       background: #00e676;
@@ -77,12 +84,9 @@
     }
     .input-group {
       display: flex;
+      justify-content: space-between;
+      gap: 10px;
       flex-wrap: wrap;
-      gap: 8px;
-    }
-    .input-group input[type="text"] {
-      flex: 1;
-      min-width: 0;
     }
     .icon-button {
       background: #00c853;
@@ -107,7 +111,8 @@
       width: 100%;
       background: #1a1a1a;
       display: flex;
-      justify-content: space-around;
+      justify-content: center;
+      align-items: center;
       padding: 10px 0;
       border-top: 1px solid #333;
       z-index: 10;
@@ -121,6 +126,7 @@
       flex-direction: column;
       align-items: center;
       cursor: pointer;
+      padding: 5px;
     }
     .active {
       color: #00e676;
@@ -150,8 +156,8 @@
 <body>
 
 <div class="container">
-  <h2>Gun.js Real-Time Chat</h2>
-  <input type="text" id="nameInput" placeholder="Nama kamu...">
+  <h2>Gabut Chat</h2>
+  <input type="text" id="nameInput" placeholder="Nama lu brek...">
   <div id="typingAvatars"></div>
   <div class="chatBox" id="chatBox"></div>
 
@@ -279,7 +285,6 @@
     });
     box.scrollTop = box.scrollHeight;
 
-    // Matikan status mengetik dari pengguna yang baru kirim pesan
     typingRef.get(data.name).put(0);
   });
 
